@@ -4,6 +4,10 @@ Overcurrent protection for a 2-post open IT rack PDU. When PDU input current ris
 
 **Startup baseline:** 0.4 A → trip threshold = **0.52 A** (0.4 × 1.30)
 
+## Device layout
+
+![PDU Emergency Cutoff System — device connections](hardware/device-layout.png)
+
 ## Hardware
 
 | Device | Role |
