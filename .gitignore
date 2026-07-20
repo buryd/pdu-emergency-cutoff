@@ -1,0 +1,16 @@
+# MicroPython / Pico
+__pycache__/
+*.pyc
+.baseline_cache/
+.thonny/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Secrets / local notes
+.env
+*.local.md
