@@ -32,6 +32,8 @@ python run_sim.py
 
 ```
 sim> status          # CT amps, DLI relay, trip pin, LEDs
+sim> leds            # show all LED states
+sim> led armed       # show one LED (armed, tripped, or learn)
 sim> i 0.55          # raise CT primary above the 0.52 A factory trip
 [DLI] Trip asserted -> Normally On OPEN, PDU is OFF
 sim> reset           # clear the latch after lowering current

@@ -27,6 +27,8 @@ Commands:
   save          press the Save pushbutton
   reset         press the Reset pushbutton
   status        show CT current, DLI relay, trip pin, LEDs
+  leds          show all LED states
+  led <name>    show one LED: armed, tripped, or learn
   help          show this help
   quit          exit the simulator
 Factory trip: %.2f A x %.2f = %.3f A sustained %d ms
@@ -44,10 +46,23 @@ def print_status():
     print("CT primary (effective): %.3f A" % s["ct_primary_effective_amps"])
     print("DLI Normally On:        %s" % ("CLOSED (PDU on)" if s["dli_normally_on"] else "OPEN (PDU off)"))
     print("Trip pin (GP%d):        %s" % (cfg.PIN_TRIP, s["trip_pin_level"]))
-    leds = " ".join(
-        "%s=%s" % (name, "ON" if lvl else "off") for name, lvl in s["leds"].items()
+    print_leds()
+
+
+def print_leds(name=None):
+    leds = world.WORLD.status()["leds"]
+    if name is not None:
+        key = name.upper()
+        if key not in leds:
+            print("Unknown LED: %s (use: armed, tripped, or learn)" % name)
+            return
+        print("%s LED: %s" % (key.title(), "ON" if leds[key] else "off"))
+        return
+    states = " ".join(
+        "%s=%s" % (key, "ON" if level else "off")
+        for key, level in leds.items()
     )
-    print("LEDs:                   %s" % leds)
+    print("LEDs:                   %s" % states)
 
 
 def main():
@@ -79,6 +94,10 @@ def main():
             print("Pressed %s" % cmd.upper())
         elif cmd == "status":
             print_status()
+        elif cmd == "leds":
+            print_leds()
+        elif cmd == "led" and len(parts) == 2:
+            print_leds(parts[1])
         elif cmd == "help":
             print(HELP)
         elif cmd in ("quit", "exit", "q"):
