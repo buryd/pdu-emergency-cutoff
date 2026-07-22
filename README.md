@@ -8,6 +8,8 @@ Overcurrent protection for a 2-post open IT rack PDU. When PDU input current ris
 
 ![PDU Emergency Cutoff System — device connections](hardware/device-layout.png)
 
+Wire colors: [hardware/WIRING_COLORS.md](hardware/WIRING_COLORS.md) (regenerate PNG: `python scripts/render_device_layout.py`).
+
 ## Hardware
 
 | Device | Role |
